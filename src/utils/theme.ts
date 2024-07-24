@@ -73,9 +73,37 @@ const colors = {
     800: "#0E0F0F",
     900: "#070708",
   },
+  grey: {
+    700: "#797670",
+    800: "#4D4B46",
+    900: "#383733",
+  },
+  black: "#000000",
 };
 
-const textStyles = {};
+const textStyles = {
+  xsHeaderMedium: {
+    //styleName: xs Montreal Header Medium;
+    fontSize: "12px",
+    fontWeight: 500,
+    lineHeight: "14.4px",
+    letterSspacing: "0.015rem",
+  },
+  xsHeaderBold: {
+    //styleName: xs Montreal Header Bold;
+    fontSize: "12px",
+    fontWeight: 700,
+    lineHeight: "14.4px",
+    letterSspacing: "0.015rem",
+  },
+  mdHeaderBold: {
+    //styleName: md Montreal Header Bold;
+    fontSize: "16px",
+    fontWeight: 700,
+    lineHeight: "19.2px",
+    letterSspacing: "0.015rem",
+  },
+};
 
 export const theme = extendTheme({
   colors: colors,
