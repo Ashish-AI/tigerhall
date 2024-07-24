@@ -79,6 +79,7 @@ const colors = {
     900: "#383733",
   },
   black: "#000000",
+  white: "#FFFFFF",
 };
 
 const textStyles = {
@@ -94,6 +95,13 @@ const textStyles = {
     fontSize: "12px",
     fontWeight: 700,
     lineHeight: "14.4px",
+    letterSspacing: "0.015rem",
+  },
+  smBodyMedium: {
+    //styleName: sm Body Medium;
+    fontSize: "14px",
+    fontWeight: 500,
+    lineHeight: "21px",
     letterSspacing: "0.015rem",
   },
   mdHeaderBold: {

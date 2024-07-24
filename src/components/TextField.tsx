@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ChangeEvent, ChangeEventHandler, ReactNode } from "react";
 import {
   InputGroup,
   InputLeftAddon,
@@ -16,7 +16,7 @@ type Props = {
   placeholder?: string;
   type?: React.HTMLInputTypeAttribute;
   value?: string | number;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 };
 
 const TextField = ({
@@ -33,10 +33,25 @@ const TextField = ({
   return (
     <InputGroup>
       {leftAddon && <InputLeftAddon children={leftAddon} />}
-      {leftElement && <InputLeftElement children={leftElement} />}
-      <Input type={type} {...rest} />
+      {leftElement && (
+        <InputLeftElement children={leftElement} pointerEvents="none" />
+      )}
+      <Input
+        backgroundColor={"grey.900"}
+        value={value}
+        onChange={onChange}
+        type={type}
+        placeholder={placeholder}
+        borderColor="grey.700"
+        borderWidth="1px"
+        color="white"
+        textStyle={"smBodyMedium"}
+        {...rest}
+      />
       {rightElement && <InputRightElement children={rightElement} />}
-      {rightAddon && <InputRightAddon children={rightAddon} />}
+      {rightAddon && (
+        <InputRightAddon children={rightAddon} pointerEvents="none" />
+      )}
     </InputGroup>
   );
 };
