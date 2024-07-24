@@ -1,13 +1,11 @@
-import { AddIcon, BellIcon, InfoIcon } from "@chakra-ui/icons";
-import { Box, IconButton, Image, Text, Flex, Icon } from "@chakra-ui/react";
+import { Box, Image, Text, Flex } from "@chakra-ui/react";
 import React from "react";
 import ProgressCircle from "../../components/CircularProgress";
 import LinearProgressBar from "../../components/LinearProgressBar";
-import TigerIconButton from "./IconButton";
-import HeadPhone from "../../assets/headphone.svg";
-import BookMark from "../../assets/bookmark.svg";
-import ShareNode from "../../assets/share-node.svg";
-import Clock from "../../assets/clock.svg";
+import { BsHeadphones } from "react-icons/bs";
+import { LuShare2 } from "react-icons/lu";
+import { GrBookmark } from "react-icons/gr";
+import IconButton from "../../components/IconButton";
 
 export const LibraryCard = () => {
   return (
@@ -16,6 +14,7 @@ export const LibraryCard = () => {
       borderRadius="lg"
       overflow="hidden"
       height={272}
+      cursor={"pointer"}
     >
       <Box position="relative" width="100%">
         <Image
@@ -42,12 +41,19 @@ export const LibraryCard = () => {
           </Text>
         </Flex>
 
-        <Box position="absolute" bottom={2} left={2}>
-          <TigerIconButton
-            icon={<HeadPhone />}
-            onClick={() => {}}
-            tooltipLabel="Coming soon"
-          />
+        <Box
+          position="absolute"
+          height={6}
+          width={6}
+          bottom={2}
+          left={2}
+          bg={"tigerOrange.600"}
+          borderRadius={"full"}
+          display="flex"
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
+          <BsHeadphones />
         </Box>
 
         <Box position="absolute" bottom={2} right={2}></Box>
@@ -69,20 +75,16 @@ export const LibraryCard = () => {
           </Text>
         </Flex>
 
-        <Box display="flex" mt="2" alignItems="center">
-          <IconButton
-            aria-label="Share"
-            icon={<BellIcon />}
-            size="sm"
-            variant="ghost"
-            ml="auto"
-          />
-          <IconButton
-            aria-label="Bookmark"
-            icon={<InfoIcon />}
-            size="m"
-            variant="ghost"
-          />
+        <Box
+          display="flex"
+          mt="2"
+          alignItems="center"
+          justifyContent={"flex-end"}
+        >
+          <IconButton color={"#FF5900"} size={18} icon={<LuShare2 />} />
+          <Box ml={3}>
+            <IconButton color={"#FF5900"} size={18} icon={<GrBookmark />} />
+          </Box>
         </Box>
       </Box>
     </Box>

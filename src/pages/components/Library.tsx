@@ -26,7 +26,7 @@ const Library = () => {
     <Box padding="62px">
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 5 }} spacing="8">
         {items.map((item, index) => (
-          <LibraryCard />
+          <LibraryCard key={index} />
         ))}
       </SimpleGrid>
     </Box>
