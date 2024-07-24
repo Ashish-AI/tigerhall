@@ -20,6 +20,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "parcel": "^2.12.0",
+    "parcel-plugin-svg-react": "^1.0.4",
     "process": "^0.11.10"
   },
   "dependencies": {
