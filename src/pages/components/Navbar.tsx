@@ -1,16 +1,9 @@
 import React, { useState } from "react";
-import {
-  Flex,
-  Box,
-  Text,
-  useBreakpointValue,
-  Img,
-  Image,
-} from "@chakra-ui/react";
+import { Flex, Box, useBreakpointValue, Image } from "@chakra-ui/react";
 import TigerHallLogoBase from "../../assets/tigerhall-logo.svg";
 import TigerHallLogoMd from "../../assets/tigerhall-horizontal.svg";
 import TextField from "../../components/TextField";
-import { IoSearch } from "react-icons/io5";
+import { IoClose, IoSearch } from "react-icons/io5";
 
 const Navbar = () => {
   const brandLogo = useBreakpointValue({
@@ -41,10 +34,30 @@ const Navbar = () => {
         <TextField
           type="text"
           placeholder="Search..."
+          value={searchValue}
           onChange={(e) => {
             setSearchValue(e.target.value);
           }}
           leftElement={<IoSearch />}
+          rightElement={
+            searchValue ? (
+              <Box
+                height={6}
+                width={6}
+                bottom={2}
+                left={2}
+                bg={"tigerOrange.600"}
+                borderRadius={"full"}
+                display="flex"
+                justifyContent={"center"}
+                alignItems={"center"}
+                onClick={() => setSearchValue("")}
+                cursor={"pointer"}
+              >
+                <IoClose />
+              </Box>
+            ) : null
+          }
         />
       </Box>
       <Box flex={1} />
