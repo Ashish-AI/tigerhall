@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_DATA = gql`
-  {
-    contentCards(filter: { limit: 20, keywords: "hi", types: [PODCAST] }) {
+  query GetData($keywords: String!) {
+    contentCards(filter: { limit: 20, keywords: $keywords, types: [PODCAST] }) {
       edges {
         ... on Podcast {
           name
