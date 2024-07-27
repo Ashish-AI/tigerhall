@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Flex, Box, useBreakpointValue, Image } from "@chakra-ui/react";
 import TigerHallLogoBase from "../../assets/tigerhall-logo.svg";
 import TigerHallLogoMd from "../../assets/tigerhall-horizontal.svg";
@@ -7,6 +7,7 @@ import { IoClose, IoSearch } from "react-icons/io5";
 import { useLazyQuery } from "@apollo/client";
 import { GET_DATA } from "../../queries/fetchData";
 import { debounce } from "lodash";
+import { useSearch } from "../../contexts/SearchContext"; // Import useSearch
 
 const Navbar = () => {
   const brandLogo = useBreakpointValue({
@@ -14,23 +15,7 @@ const Navbar = () => {
     md: TigerHallLogoMd as unknown as string,
   });
 
-  const [searchValue, setSearchValue] = useState<string>("");
-
-  const [getData, { loading, data, error }] = useLazyQuery(GET_DATA);
-
-  const debouncedGetData = useCallback(
-    debounce((value) => {
-      console.log("Debouncing", value);
-      getData({ variables: { keywords: value } });
-    }, 300),
-    [getData]
-  );
-
-  useEffect(() => {
-    if (searchValue) {
-      debouncedGetData(searchValue);
-    }
-  }, [searchValue, debouncedGetData]);
+  const { searchValue, setSearchValue } = useSearch();
 
   return (
     <Flex

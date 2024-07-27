@@ -4,19 +4,19 @@ import Home from "./pages/Home";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./utils/theme";
 import ApolloProviderComponent from "./providers/AppoloProviderComponent";
+import { SearchProvider } from "./contexts/SearchContext"; // Import SearchProvider
 
 const App = () => {
   return (
     <Router>
       <ApolloProviderComponent>
         <ChakraProvider theme={theme}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-
-            {/* // For invalid route; handle if time permits //
-          <Route path="*" element={<Home />} /> */}
-          </Routes>
+          <SearchProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+            </Routes>
+          </SearchProvider>
         </ChakraProvider>
       </ApolloProviderComponent>
     </Router>
