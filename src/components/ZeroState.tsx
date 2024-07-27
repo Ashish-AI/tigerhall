@@ -19,6 +19,7 @@ const ZeroState: React.FC<ZeroStateProps> = ({
       justify="center"
       height="calc(100vh - 80px)"
       width="100vw"
+      px={4}
     >
       <Player
         autoplay
@@ -26,10 +27,15 @@ const ZeroState: React.FC<ZeroStateProps> = ({
         src={TigerChilling}
         style={{ height: "300px", width: "300px" }}
       />
-      <Text variant="formulaHeader" color="teal.300" mb={4}>
+      <Text
+        variant="formulaHeader"
+        color="teal.300"
+        mb={4}
+        textAlign={"center"}
+      >
         {title}
       </Text>
-      <Text fontSize="lg" color="white.600">
+      <Text fontSize="lg" color="white.600" textAlign={"center"}>
         {subtitle ?? (
           <>
             Just start typing, and we'll bring you the most{" "}

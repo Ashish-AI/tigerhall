@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect } from "react";
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box, SimpleGrid, Text } from "@chakra-ui/react";
 import { LibraryCard } from "./LIbraryCard";
 import { useSearch } from "../../contexts/SearchContext";
 import { useLazyQuery } from "@apollo/client";
-import { debounce } from "lodash";
+import { debounce, isNil } from "lodash";
 import { GET_DATA } from "../../queries/fetchData";
+import ZeroState from "../../components/ZeroState";
+import { ContentCard } from "../../utils/types";
 
 const Library = () => {
   const { searchValue, setSearchValue } = useSearch();
@@ -25,11 +27,15 @@ const Library = () => {
     }
   }, [searchValue, debouncedGetData]);
 
+  if (isNil(data)) {
+    return <ZeroState />;
+  }
+
   return (
     <Box padding="62px">
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 5 }} spacing="8">
-        {Array.from({ length: 15 }).map((item, index) => (
-          <LibraryCard key={index} />
+        {data?.contentCards?.edges?.map((item: ContentCard, index: number) => (
+          <LibraryCard key={index} data={item} />
         ))}
       </SimpleGrid>
     </Box>

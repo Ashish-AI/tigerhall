@@ -6,8 +6,17 @@ import { BsHeadphones } from "react-icons/bs";
 import { LuShare2 } from "react-icons/lu";
 import { GrBookmark } from "react-icons/gr";
 import IconButton from "../../components/IconButton";
+import { ContentCard } from "../../utils/types";
+import { isNil } from "lodash";
 
-export const LibraryCard = () => {
+export const LibraryCard = ({ data }: { data: ContentCard }) => {
+  if (isNil(data)) {
+    return;
+  }
+  const { categories, experts, image, name } = data;
+
+  console.log(data);
+
   return (
     <Box
       boxShadow="0px 1px 8px 0px #0000004D"
@@ -18,7 +27,7 @@ export const LibraryCard = () => {
     >
       <Box position="relative" width="100%">
         <Image
-          src="https://s3-alpha-sig.figma.com/img/2a4a/51e2/be5e328dff67a8423a41026cef565d5f?Expires=1722816000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=DqIaqvqv7ce7mLER9y0y622DLRWRdDdo9BwKAsHisY3R42yeMDgX2VsofSwi7qqelayUtsEBHD0Nh~8HBf~RhKsluiUQYuNIRegBocws2iiCvakr~IuDS6mJ~ihCPDIL2Lfj2T2ZThvFZTB9C5V5Y0p~axJjZ5-CXUsG4tuhE~yFWf0q5jvNZxgE-hwn0-LWZ6-8ooQxAtMKINxvK1PnQi1H1X8sIJPUcE~TaEZCIjgufX17IqwdPwrQQtPzZ8Z4CrUtWrYMn-aqNm5iz7khExkJghHVja~VGWgsToGkPpAxkXfUgNdDcss4B86tJ9ZLcTZgfokpLNanA5oNh7Lr0g__"
+          src={image.uri}
           height={120}
           width="100%"
           objectFit="cover"
