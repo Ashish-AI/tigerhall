@@ -29,6 +29,7 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
+    "@lottiefiles/react-lottie-player": "^3.5.4",
     "framer-motion": "^11.3.12",
     "graphql": "^16.9.0",
     "lodash": "^4.17.21",

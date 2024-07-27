@@ -83,33 +83,42 @@ const colors = {
 };
 
 const textStyles = {
+  formulaHeader: {
+    //styleName: 7xl Formula Header;
+    fontSize: "52px",
+    fontWeight: 800,
+    lineHeight: "71.34px",
+    letterSpacing: "0.015rem",
+    border: "1px solid red",
+  },
+
   xsHeaderMedium: {
     //styleName: xs Montreal Header Medium;
     fontSize: "12px",
     fontWeight: 500,
     lineHeight: "14.4px",
-    letterSspacing: "0.015rem",
+    letterSpacing: "0.015rem",
   },
   xsHeaderBold: {
     //styleName: xs Montreal Header Bold;
     fontSize: "12px",
     fontWeight: 700,
     lineHeight: "14.4px",
-    letterSspacing: "0.015rem",
+    letterSpacing: "0.015rem",
   },
   smBodyMedium: {
     //styleName: sm Body Medium;
     fontSize: "14px",
     fontWeight: 500,
     lineHeight: "21px",
-    letterSspacing: "0.015rem",
+    letterSpacing: "0.015rem",
   },
   mdHeaderBold: {
     //styleName: md Montreal Header Bold;
     fontSize: "16px",
     fontWeight: 700,
     lineHeight: "19.2px",
-    letterSspacing: "0.015rem",
+    letterSpacing: "0.015rem",
   },
 };
 
