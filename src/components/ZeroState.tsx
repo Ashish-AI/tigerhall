@@ -20,6 +20,7 @@ const ZeroState: React.FC<ZeroStateProps> = ({
       height="calc(100vh - 80px)"
       width="100vw"
       px={4}
+      data-testid="zero-state"
     >
       <Player
         autoplay
