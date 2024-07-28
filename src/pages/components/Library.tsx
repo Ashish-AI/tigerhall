@@ -1,15 +1,26 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box, SimpleGrid, Text } from "@chakra-ui/react";
 import { useSearch } from "../../contexts/SearchContext";
 import { useLazyQuery } from "@apollo/client";
 import { debounce, isNil } from "lodash";
 import { GET_DATA } from "../../queries/fetchData";
-import ZeroState from "../../components/ZeroState";
 import { ContentCard } from "../../utils/types";
 import { LibraryCard } from "./LIbraryCard";
 import { mockData } from "../../utils/mock";
+import GenericFullPage from "../../components/GenericFullPage";
+import TigerMusic from "../../assets/tiger-music.json";
 
-const LIMIT = 4; // Number of items per page
+const LIMIT = 15; // Number of items per page
+
+const subtitle = (
+  <Text fontSize="lg" color="white.600" textAlign={"center"}>
+    Just start typing, and we'll bring you the most{" "}
+    <Text as="span" fontWeight="bold" color="tigerOrange.600">
+      purr-fect
+    </Text>{" "}
+    content!
+  </Text>
+);
 
 const Library = () => {
   const { searchValue } = useSearch();
@@ -87,8 +98,24 @@ const Library = () => {
     if (sentinelRef.current) observer.current.observe(sentinelRef.current);
   }, [loading, loadMore]);
 
+  // Empty state
+  if (!loading && data?.contentCards?.edges?.length === 0) {
+    return (
+      <GenericFullPage
+        lottie={TigerMusic}
+        title="Tiger on a relaxation break!"
+        subtitle={
+          "It looks like there's nothing here. We’ll have more for you soon!"
+        }
+      />
+    );
+  }
+
+  // Zero state
   if (isNil(data) && !loading) {
-    return <ZeroState />;
+    return (
+      <GenericFullPage title="Our tiger's on standby!" subtitle={subtitle} />
+    );
   }
 
   return (

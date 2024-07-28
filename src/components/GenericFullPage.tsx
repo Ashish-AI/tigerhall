@@ -3,14 +3,16 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import React from "react";
 import TigerChilling from "../assets/tiger-chilling.json";
 
-interface ZeroStateProps {
+interface GenericFullPageProps {
   title?: string;
   subtitle?: React.ReactNode;
+  lottie?: any;
 }
 
-const ZeroState: React.FC<ZeroStateProps> = ({
-  title = "Our tiger's on standby!",
+const GenericFullPage: React.FC<GenericFullPageProps> = ({
+  title,
   subtitle,
+  lottie,
 }) => {
   return (
     <Flex
@@ -25,10 +27,11 @@ const ZeroState: React.FC<ZeroStateProps> = ({
       <Player
         autoplay
         loop
-        src={TigerChilling}
+        src={lottie ?? TigerChilling}
         style={{ height: "300px", width: "300px" }}
       />
       <Text
+        fontSize={32}
         variant="formulaHeader"
         color="teal.300"
         mb={4}
@@ -36,19 +39,18 @@ const ZeroState: React.FC<ZeroStateProps> = ({
       >
         {title}
       </Text>
-      <Text fontSize="lg" color="white.600" textAlign={"center"}>
-        {subtitle ?? (
-          <>
-            Just start typing, and we'll bring you the most{" "}
-            <Text as="span" fontWeight="bold" color="tigerOrange.600">
-              purr-fect
-            </Text>{" "}
-            content!
-          </>
-        )}
-      </Text>
+
+      {subtitle ? (
+        typeof subtitle === "string" ? (
+          <Text fontSize="lg" color="white.600" textAlign={"center"}>
+            {subtitle}
+          </Text>
+        ) : (
+          subtitle
+        )
+      ) : null}
     </Flex>
   );
 };
 
-export default ZeroState;
+export default GenericFullPage;

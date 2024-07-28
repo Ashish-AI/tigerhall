@@ -38,7 +38,7 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
       boxShadow="0px 1px 8px 0px #0000004D"
       borderRadius="lg"
       overflow="hidden"
-      height={272}
+      height={280}
       cursor={"pointer"}
       display="flex"
       flexDirection="column"
@@ -118,12 +118,7 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
           </Flex>
         </Box>
 
-        <Box
-          display="flex"
-          mt="2"
-          alignItems="center"
-          justifyContent={"flex-end"}
-        >
+        <Box display="flex" alignItems="center" justifyContent={"flex-end"}>
           <IconButton color={"#FF5900"} size={18} icon={<LuShare2 />} />
           <Box ml={3}>
             <IconButton color={"#FF5900"} size={18} icon={<GrBookmark />} />
