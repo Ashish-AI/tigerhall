@@ -113,7 +113,16 @@ const Library = () => {
   // Loading state
   if (loading && items.length === 0) {
     return (
-      <Box padding="62px">
+      <Box px="62px" pb={"62px"} pt={{ base: "40px", md: "60px" }}>
+        <Text
+          as={"h1"}
+          color={"white"}
+          mb={10}
+          textStyle={"headerBold"}
+          textAlign={{ base: "center", md: "left" }}
+        >
+          Tigerhall Library
+        </Text>
         <SimpleGrid columns={{ sm: 1, md: 2, lg: 4, xl: 5 }} spacing="8">
           {Array.from({ length: 15 }).map((item, index) => (
             <LibraryCardShimmer key={index} /> // Show shimmer effect while loading
