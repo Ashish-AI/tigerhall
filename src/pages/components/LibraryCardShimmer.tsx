@@ -4,7 +4,6 @@ import {
   Flex,
   Skeleton,
   SkeletonCircle,
-  SkeletonText,
   useBreakpointValue,
 } from "@chakra-ui/react";
 
@@ -24,58 +23,11 @@ const ShimmerLibraryCard = () => {
     >
       <Box position="relative" width="100%" height={120}>
         <Skeleton
-          height="100%"
-          width="100%"
-          borderRadius="md"
+          height="full"
+          width="full"
           startColor="gray.700"
           endColor="gray.800"
-        >
-          <Box height="100%" width="100%" bg="gray.700" />
-        </Skeleton>
-
-        <Flex
-          position="absolute"
-          top={0}
-          left={0}
-          p="2"
-          borderBottomRightRadius={"base"}
-          backgroundColor={"gray.900"}
-          flexDirection={"row"}
-          alignItems="center"
-        >
-          <SkeletonCircle size="12" startColor="gray.700" endColor="gray.800" />
-          <Skeleton
-            height="4"
-            width="24"
-            ml={2}
-            startColor="gray.700"
-            endColor="gray.800"
-          />
-        </Flex>
-
-        <Box
-          position="absolute"
-          height={6}
-          width={6}
-          bottom={2}
-          left={2}
-          bg={"gray.900"}
-          borderRadius={"full"}
-          display="flex"
-          justifyContent={"center"}
-          alignItems={"center"}
-        >
-          <SkeletonCircle size="6" startColor="gray.700" endColor="gray.800" />
-        </Box>
-
-        <Box position="absolute" bottom={2} right={2}>
-          <Skeleton
-            height="6"
-            width="24"
-            startColor="gray.700"
-            endColor="gray.800"
-          />
-        </Box>
+        />
       </Box>
       <Skeleton
         height="4"
