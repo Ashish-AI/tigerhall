@@ -1,10 +1,19 @@
 import { gql } from "@apollo/client";
 
 export const GET_DATA = gql`
-  query GetData($keywords: String!) {
-    contentCards(filter: { limit: 20, keywords: $keywords, types: [PODCAST] }) {
+  query GetContentCards($limit: Int!, $offset: Int!, $keywords: String!) {
+    contentCards(
+      filter: {
+        limit: $limit
+        keywords: $keywords
+        types: [PODCAST]
+        offset: $offset
+      }
+    ) {
       edges {
         ... on Podcast {
+          length
+          timeSpentOnByUsers
           name
           image {
             ...Image
@@ -12,10 +21,17 @@ export const GET_DATA = gql`
           categories {
             ...Category
           }
-          experts {
-            ...Expert
+          participants {
+            company
+            firstName
+            lastName
           }
         }
+      }
+      meta {
+        limit
+        total
+        offset
       }
     }
   }
@@ -26,12 +42,5 @@ export const GET_DATA = gql`
 
   fragment Category on Category {
     name
-  }
-
-  fragment Expert on Expert {
-    firstName
-    lastName
-    title
-    company
   }
 `;
