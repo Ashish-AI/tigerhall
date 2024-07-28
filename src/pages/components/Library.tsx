@@ -9,6 +9,7 @@ import { LibraryCard } from "./LIbraryCard";
 import { mockData } from "../../utils/mock";
 import GenericFullPage from "../../components/GenericFullPage";
 import TigerMusic from "../../assets/tiger-music.json";
+import TigerError from "../../assets/tiger-error.json";
 
 const LIMIT = 15; // Number of items per page
 
@@ -30,7 +31,7 @@ const Library = () => {
   const observer = useRef<IntersectionObserver | null>(null);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
 
-  const [getData, { loading, data, error }] = useLazyQuery(GET_DATA, {
+  const [getData, { loading, data, error, refetch }] = useLazyQuery(GET_DATA, {
     variables: { limit: LIMIT, offset: 0, keywords: searchValue || "" },
   });
 
@@ -115,6 +116,21 @@ const Library = () => {
   if (isNil(data) && !loading) {
     return (
       <GenericFullPage title="Our tiger's on standby!" subtitle={subtitle} />
+    );
+  }
+
+  // Error stage
+  if (error) {
+    return (
+      <GenericFullPage
+        lottie={TigerError}
+        title="Oops! Something went wrong."
+        subtitle="We couldn't fetch the content. Please try again later."
+        ctaLabel="Retry"
+        onClick={() => {
+          refetch();
+        }}
+      />
     );
   }
 

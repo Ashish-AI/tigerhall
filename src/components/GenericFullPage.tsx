@@ -2,17 +2,22 @@ import { Flex, Text } from "@chakra-ui/react";
 import { Player } from "@lottiefiles/react-lottie-player";
 import React from "react";
 import TigerChilling from "../assets/tiger-chilling.json";
+import TigerButton from "./TigerButton";
 
 interface GenericFullPageProps {
   title?: string;
   subtitle?: React.ReactNode;
   lottie?: any;
+  ctaLabel?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 const GenericFullPage: React.FC<GenericFullPageProps> = ({
   title,
   subtitle,
   lottie,
+  ctaLabel,
+  onClick,
 }) => {
   return (
     <Flex
@@ -48,6 +53,9 @@ const GenericFullPage: React.FC<GenericFullPageProps> = ({
         ) : (
           subtitle
         )
+      ) : null}
+      {ctaLabel ? (
+        <TigerButton ctaLabel={ctaLabel} mt={10} onClick={onClick} />
       ) : null}
     </Flex>
   );
