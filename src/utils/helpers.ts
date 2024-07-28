@@ -59,3 +59,28 @@ export const getCompletedPercentage = (
   const percentage = Math.floor((timeSpent / totalLength) * 100);
   return percentage;
 };
+
+/**
+ * Generates a resized image URL.
+ *
+ * @param {string} originalUrl - The original image URL.
+ * @param {number} width - The desired width of the resized image.
+ * @param {number} height - The desired height of the resized image.
+ * @returns {string} - The resized image URL.
+ */
+export const getResizedImageUrl = (
+  originalUrl: string,
+  width: number,
+  height: number
+): string => {
+  // Parse the URL to separate the hostname and path
+  const url = new URL(originalUrl);
+
+  // Insert '/resize/<width>x<height>' after the hostname
+  const resizedPath = `/resize/${width}x${height}`;
+
+  // Rebuild the URL with the resized path
+  const resizedUrl = `${url.protocol}//${url.hostname}${resizedPath}${url.pathname}${url.search}`;
+
+  return resizedUrl;
+};

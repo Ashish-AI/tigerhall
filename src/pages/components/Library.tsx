@@ -11,6 +11,7 @@ import TigerError from "../../assets/tiger-error.json";
 import LibraryCardShimmer from "./LibraryCardShimmer";
 import { useSearch } from "../../providers/SearchProvider";
 import { LibraryCard } from "./LIbraryCard";
+import { getResizedImageUrl } from "../../utils/helpers";
 
 const LIMIT = 15; // Number of items per page
 

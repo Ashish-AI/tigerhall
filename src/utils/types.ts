@@ -1,5 +1,6 @@
 type Image = {
   uri: string;
+  alt: string;
 };
 
 type Category = {

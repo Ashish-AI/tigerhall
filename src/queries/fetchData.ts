@@ -38,6 +38,7 @@ export const GET_DATA = gql`
 
   fragment Image on Image {
     uri
+    alt
   }
 
   fragment Category on Category {

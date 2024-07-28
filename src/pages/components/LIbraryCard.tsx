@@ -62,7 +62,7 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
           height="100%"
           width="100%"
           objectFit="cover"
-          alt="Content Image"
+          alt={image?.alt ?? "content-image"}
         />
 
         {/* Progress circle indicating content completion */}
