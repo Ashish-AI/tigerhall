@@ -36,6 +36,6 @@ type Data = {
   contentCards: Edge;
 };
 
-type Root = {
+export type Root = {
   data: Data;
 };

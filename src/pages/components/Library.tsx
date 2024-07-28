@@ -7,6 +7,7 @@ import { GET_DATA } from "../../queries/fetchData";
 import ZeroState from "../../components/ZeroState";
 import { ContentCard } from "../../utils/types";
 import { LibraryCard } from "./LIbraryCard";
+import { mockData } from "../../utils/mock";
 
 const LIMIT = 4; // Number of items per page
 
@@ -93,6 +94,19 @@ const Library = () => {
   return (
     <Box padding="62px">
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 4, xl: 5 }} spacing="8">
+        {/*/=========DUMMY DATA==========*
+
+ 						The API response gives dummy value with some preprty with null/undefined/empty string as value
+						Uncomment this to check UI with dummy data
+
+				*/}
+
+        {/* {mockData.data.contentCards?.edges?.map((item, index) => {
+          return <LibraryCard key={index} data={item} />;
+        })} */}
+
+        {/*/=========DUMMY DATA==========*/}
+
         {items.map((item: ContentCard, index: number) => (
           <LibraryCard key={index} data={item} />
         ))}
