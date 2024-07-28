@@ -8,7 +8,12 @@ import { GrBookmark } from "react-icons/gr";
 import IconButton from "../../components/IconButton";
 import { ContentCard } from "../../utils/types";
 import { isNil } from "lodash";
-import { getCompletedPercentage } from "../../utils/helpers";
+import {
+  formatTimeFromMinutes,
+  getCompletedPercentage,
+} from "../../utils/helpers";
+import { StripInfo } from "../../components/StripInfo";
+import { WiTime3 } from "react-icons/wi";
 
 export const LibraryCard = ({ data }: { data: ContentCard }) => {
   if (isNil(data)) {
@@ -83,7 +88,9 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
           <BsHeadphones />
         </Box>
 
-        <Box position="absolute" bottom={2} right={2}></Box>
+        <Box position="absolute" bottom={2} right={2}>
+          <StripInfo icon={<WiTime3 />} value={formatTimeFromMinutes(length)} />
+        </Box>
       </Box>
       <LinearProgressBar value={timeSpentOnByUsers} />
       <Box

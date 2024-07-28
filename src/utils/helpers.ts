@@ -9,10 +9,19 @@ export const formatTimeFromMinutes = (minutes: number): string => {
   const secondsStr = String(seconds).padStart(2, "0");
 
   if (hours > 0) {
-    return `${hoursStr}:${minutesStr}:${secondsStr}`;
+    // Format as hh:mm:ss or hh:mm if seconds are zero
+    if (remainingMinutes === 0 && seconds === 0) {
+      return `${hours}h`;
+    }
+    return `${hoursStr}h:${minutesStr}m${seconds > 0 ? `:${secondsStr}s` : ""}`;
   } else if (remainingMinutes > 0) {
+    // Format as mm:ss or mm if seconds are zero
+    if (seconds === 0) {
+      return `${minutesStr}m`;
+    }
     return `${minutesStr}:${secondsStr}`;
   } else {
+    // Format as ss
     return `${secondsStr}`;
   }
 };
