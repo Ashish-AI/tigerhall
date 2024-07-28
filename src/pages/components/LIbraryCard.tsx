@@ -82,19 +82,13 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
           </Text>
         </Flex>
 
-        <Box
-          position="absolute"
-          height={6}
-          width={6}
-          bottom={2}
-          left={2}
-          bg={"tigerOrange.600"}
-          borderRadius={"full"}
-          display="flex"
-          justifyContent={"center"}
-          alignItems={"center"}
-        >
-          <BsHeadphones />
+        <Box position="absolute" bottom={2} left={2}>
+          <IconButton
+            icon={<BsHeadphones />}
+            size={6}
+            variant="filled"
+            color="white"
+          />
         </Box>
 
         {/* Time spent on content displayed at the bottom right */}
