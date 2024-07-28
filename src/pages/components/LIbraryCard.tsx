@@ -33,7 +33,7 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
   } = data;
 
   // Define number of lines for the text based on screen size
-  const noOfLines = useBreakpointValue({ base: 1, md: 3, lg: 1, xl: 3 });
+  const noOfLines = useBreakpointValue({ base: 1, md: 3 });
 
   // Calculate the percentage of content completed
   const timeSpentOnContent = getCompletedPercentage(timeSpentOnByUsers, length);
@@ -119,17 +119,17 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
           <Text
             textStyle={"mdHeaderBold"}
             color="black"
-            mt={"2px"}
+            mt={2}
             noOfLines={noOfLines}
           >
             {preamble}
           </Text>
           {/* Expert details */}
-          <Flex flexDirection={"column"} mt={1}>
-            <Text variant={"xsHeaderMedium"} color="grey.800">
+          <Flex flexDirection={"column"} mt={2}>
+            <Text textStyle={"xsHeaderMedium"} color="grey.800">
               {expertFullName}
             </Text>
-            <Text variant={"xsHeaderBold"} color="grey.700" noOfLines={1}>
+            <Text textStyle={"xsHeaderBold"} color="grey.700" noOfLines={1}>
               {expertCompany}
             </Text>
           </Flex>
