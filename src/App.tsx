@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./utils/theme";
 import ApolloProviderComponent from "./providers/AppoloProviderComponent";
-import { SearchProvider } from "./contexts/SearchContext"; // Import SearchProvider
+import { SearchProvider } from "./providers/SearchProvider";
 
 const App = () => {
   return (

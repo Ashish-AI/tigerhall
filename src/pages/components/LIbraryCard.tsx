@@ -15,10 +15,14 @@ import {
 import { StripInfo } from "../../components/StripInfo";
 import { WiTime3 } from "react-icons/wi";
 
+// Component to display individual content cards in the library
 export const LibraryCard = ({ data }: { data: ContentCard }) => {
+  // Return nothing if no data is provided
   if (isNil(data)) {
     return;
   }
+
+  // Destructure properties from the content card data
   const {
     categories,
     participants,
@@ -28,14 +32,18 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
     timeSpentOnByUsers,
   } = data;
 
+  // Define number of lines for the text based on screen size
   const noOfLines = useBreakpointValue({ base: 1, md: 3, lg: 1, xl: 3 });
+
+  // Calculate the percentage of content completed
   const timeSpentOnContent = getCompletedPercentage(timeSpentOnByUsers, length);
 
-  // Recent expert details
+  // Get the full name and company of the first participant (expert)
   const expertFullName =
     participants[0].firstName + " " + participants[0].lastName;
   const expertCompany = participants[0].company;
 
+  // Get the category name of the content
   const category = categories[0].name;
 
   return (
@@ -54,9 +62,10 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
           height="100%"
           width="100%"
           objectFit="cover"
-          alt="Sunset"
+          alt="Content Image"
         />
 
+        {/* Progress circle indicating content completion */}
         <Flex
           position="absolute"
           top={0}
@@ -88,11 +97,15 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
           <BsHeadphones />
         </Box>
 
+        {/* Time spent on content displayed at the bottom right */}
         <Box position="absolute" bottom={2} right={2}>
           <StripInfo icon={<WiTime3 />} value={formatTimeFromMinutes(length)} />
         </Box>
       </Box>
+
+      {/* Linear progress bar indicating time spent by users */}
       <LinearProgressBar value={timeSpentOnByUsers} />
+
       <Box
         p={2}
         backgroundColor={"white"}
@@ -104,9 +117,11 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
         justifyContent={"space-between"}
       >
         <Box>
+          {/* Category of the content */}
           <Text textStyle={"xsHeaderMedium"} color={"grey.700"}>
             {category?.toUpperCase()}
           </Text>
+          {/* Content preamble */}
           <Text
             textStyle={"mdHeaderBold"}
             color="black"
@@ -115,6 +130,7 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
           >
             {preamble}
           </Text>
+          {/* Expert details */}
           <Flex flexDirection={"column"} mt={1}>
             <Text variant={"xsHeaderMedium"} color="grey.800">
               {expertFullName}
@@ -125,6 +141,7 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
           </Flex>
         </Box>
 
+        {/* Action buttons */}
         <Box display="flex" alignItems="center" justifyContent={"flex-end"}>
           <IconButton color={"#FF5900"} size={18} icon={<LuShare2 />} />
           <Box ml={3}>

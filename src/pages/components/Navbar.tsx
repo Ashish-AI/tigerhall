@@ -4,16 +4,19 @@ import TigerHallLogoBase from "../../assets/tigerhall-logo.svg";
 import TigerHallLogoMd from "../../assets/tigerhall-horizontal.svg";
 import TextField from "../../components/TextField";
 import { IoClose, IoSearch } from "react-icons/io5";
-import { useSearch } from "../../contexts/SearchContext";
+import { useSearch } from "../../providers/SearchProvider";
 
 const Navbar = () => {
+  // Determine the logo to display based on the viewport size
   const brandLogo = useBreakpointValue({
     base: TigerHallLogoBase as unknown as string,
     md: TigerHallLogoMd as unknown as string,
   });
 
+  // Access search state and updater from the SearchContext
   const { searchValue, setSearchValue } = useSearch();
 
+  // Right element in the search input, a close icon to clear the search field
   const rightElement = (
     <Box
       height={6}
@@ -25,7 +28,7 @@ const Navbar = () => {
       display="flex"
       justifyContent={"center"}
       alignItems={"center"}
-      onClick={() => setSearchValue("")}
+      onClick={() => setSearchValue("")} // Clears the search field on click
       cursor={"pointer"}
     >
       <IoClose />
@@ -41,9 +44,11 @@ const Navbar = () => {
       borderBottom="1px"
       borderColor="darkGrey.500"
     >
+      {/* Left side of the Navbar with the brand logo */}
       <Box flex={1}>
         <Image src={brandLogo} alt="brand-logo" />
       </Box>
+      {/* Center section with the search field */}
       <Box
         flex={5}
         marginLeft={{ base: "1rem", md: "0" }}
@@ -58,9 +63,10 @@ const Navbar = () => {
             setSearchValue(e.target.value);
           }}
           leftElement={<IoSearch />}
-          rightElement={searchValue ? rightElement : null}
+          rightElement={searchValue ? rightElement : null} // Show clear button if searchValue is not empty
         />
       </Box>
+      {/* Empty box to push the content to the center */}
       <Box flex={1} />
     </Flex>
   );
