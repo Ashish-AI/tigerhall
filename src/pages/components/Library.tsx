@@ -10,6 +10,7 @@ import { mockData } from "../../utils/mock";
 import GenericFullPage from "../../components/GenericFullPage";
 import TigerMusic from "../../assets/tiger-music.json";
 import TigerError from "../../assets/tiger-error.json";
+import LibraryCardShimmer from "./LibraryCardShimmer";
 
 const LIMIT = 15; // Number of items per page
 
@@ -98,6 +99,19 @@ const Library = () => {
 
     if (sentinelRef.current) observer.current.observe(sentinelRef.current);
   }, [loading, loadMore]);
+
+  // Loading state
+  if (loading && items.length === 0) {
+    return (
+      <Box padding="62px">
+        <SimpleGrid columns={{ sm: 1, md: 2, lg: 4, xl: 5 }} spacing="8">
+          {Array.from({ length: 15 }).map((item, index) => {
+            return <LibraryCardShimmer />;
+          })}
+        </SimpleGrid>
+      </Box>
+    );
+  }
 
   // Empty state
   if (!loading && data?.contentCards?.edges?.length === 0) {
