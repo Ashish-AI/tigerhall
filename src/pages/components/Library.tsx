@@ -66,9 +66,12 @@ const Library = () => {
   };
 
   useEffect(() => {
-    if (loading) return;
-    if (observer.current) observer.current.disconnect();
-
+    if (loading) {
+      return;
+    }
+    if (observer.current) {
+      observer.current.disconnect();
+    }
     observer.current = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -89,7 +92,7 @@ const Library = () => {
 
   return (
     <Box padding="62px">
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 5 }} spacing="8">
+      <SimpleGrid columns={{ sm: 1, md: 2, lg: 4, xl: 5 }} spacing="8">
         {items.map((item: ContentCard, index: number) => (
           <LibraryCard key={index} data={item} />
         ))}

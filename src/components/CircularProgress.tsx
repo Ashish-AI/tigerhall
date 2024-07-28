@@ -15,8 +15,11 @@ const ProgressCircle = ({
   height = 12,
   width = 12,
 }: Props) => {
+  // To make sure UI looks like a progress indicator rather than an outlined circle
+  const value = percentage === 0 ? 2 : percentage;
+
   // Ensure percentage is within 0 to 100
-  const normalizedPercentage = Math.min(Math.max(percentage, 0), 100);
+  const normalizedPercentage = Math.min(Math.max(value, 0), 100);
 
   // Calculate the angle for the arc (0 to 360 degrees)
   const angle = (normalizedPercentage / 100) * 360;

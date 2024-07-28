@@ -14,7 +14,7 @@ export const GET_DATA = gql`
         ... on Podcast {
           length
           timeSpentOnByUsers
-          name
+          preamble
           image {
             ...Image
           }

@@ -1,4 +1,4 @@
-import { Box, Image, Text, Flex } from "@chakra-ui/react";
+import { Box, Image, Text, Flex, useBreakpointValue } from "@chakra-ui/react";
 import React from "react";
 import ProgressCircle from "../../components/CircularProgress";
 import LinearProgressBar from "../../components/LinearProgressBar";
@@ -8,14 +8,30 @@ import { GrBookmark } from "react-icons/gr";
 import IconButton from "../../components/IconButton";
 import { ContentCard } from "../../utils/types";
 import { isNil } from "lodash";
+import { getCompletedPercentage } from "../../utils/helpers";
 
 export const LibraryCard = ({ data }: { data: ContentCard }) => {
   if (isNil(data)) {
     return;
   }
-  const { categories, experts, image, name } = data;
+  const {
+    categories,
+    participants,
+    image,
+    preamble,
+    length,
+    timeSpentOnByUsers,
+  } = data;
 
-  console.log(data);
+  const noOfLines = useBreakpointValue({ base: 1, md: 3, lg: 1, xl: 3 });
+  const timeSpentOnContent = getCompletedPercentage(timeSpentOnByUsers, length);
+
+  // Recent expert details
+  const expertFullName =
+    participants[0].firstName + " " + participants[0].lastName;
+  const expertCompany = participants[0].company;
+
+  const category = categories[0].name;
 
   return (
     <Box
@@ -24,11 +40,13 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
       overflow="hidden"
       height={272}
       cursor={"pointer"}
+      display="flex"
+      flexDirection="column"
     >
-      <Box position="relative" width="100%">
+      <Box position="relative" width="100%" height={120}>
         <Image
           src={image.uri}
-          height={120}
+          height="100%"
           width="100%"
           objectFit="cover"
           alt="Sunset"
@@ -44,9 +62,9 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
           flexDirection={"row"}
           alignItems="center"
         >
-          <ProgressCircle percentage={30} />
+          <ProgressCircle percentage={timeSpentOnContent} />
           <Text textColor={"grey.900"} textStyle={"xsHeaderBold"} ml={1}>
-            30% Completed
+            {`${timeSpentOnContent}% Completed`}
           </Text>
         </Flex>
 
@@ -67,22 +85,38 @@ export const LibraryCard = ({ data }: { data: ContentCard }) => {
 
         <Box position="absolute" bottom={2} right={2}></Box>
       </Box>
-      <LinearProgressBar value={30} />
-      <Box p={2} backgroundColor={"white"}>
-        <Text textStyle={"xsHeaderMedium"} color={"grey.700"}>
-          COMMUNICATING AS A LEADER
-        </Text>
-        <Text textStyle={"mdHeaderBold"} color="black" mt={"2px"}>
-          Peak Performance: Going From Good to Great with Simon Taudel
-        </Text>
-        <Flex flexDirection={"column"} mt={1}>
-          <Text variant={"xsHeaderMedium"} color="grey.800">
-            Jane Doe
+      <LinearProgressBar value={timeSpentOnByUsers} />
+      <Box
+        p={2}
+        backgroundColor={"white"}
+        borderBottomRadius="lg"
+        overflow="hidden"
+        flex={1}
+        display={"flex"}
+        flexDirection={"column"}
+        justifyContent={"space-between"}
+      >
+        <Box>
+          <Text textStyle={"xsHeaderMedium"} color={"grey.700"}>
+            {category?.toUpperCase()}
           </Text>
-          <Text variant={"xsHeaderBold"} color="grey.700">
-            Subway APAC
+          <Text
+            textStyle={"mdHeaderBold"}
+            color="black"
+            mt={"2px"}
+            noOfLines={noOfLines}
+          >
+            {preamble}
           </Text>
-        </Flex>
+          <Flex flexDirection={"column"} mt={1}>
+            <Text variant={"xsHeaderMedium"} color="grey.800">
+              {expertFullName}
+            </Text>
+            <Text variant={"xsHeaderBold"} color="grey.700" noOfLines={1}>
+              {expertCompany}
+            </Text>
+          </Flex>
+        </Box>
 
         <Box
           display="flex"

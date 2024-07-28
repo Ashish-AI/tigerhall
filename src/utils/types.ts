@@ -6,16 +6,36 @@ type Category = {
   name: string;
 };
 
-type Expert = {
+type Participant = {
+  company: string;
   firstName: string;
   lastName: string;
-  title: string;
-  company: string;
 };
 
 export type ContentCard = {
-  name: string;
+  length: number;
+  timeSpentOnByUsers: number;
+  preamble: string;
   image: Image;
   categories: Category[];
-  experts: Expert[];
+  participants: Participant[];
+};
+
+type Edge = {
+  edges: ContentCard[];
+  meta: Meta;
+};
+
+type Meta = {
+  limit: number;
+  total: number;
+  offset: number;
+};
+
+type Data = {
+  contentCards: Edge;
+};
+
+type Root = {
+  data: Data;
 };
