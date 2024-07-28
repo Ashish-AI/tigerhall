@@ -89,7 +89,13 @@ const textStyles = {
     fontWeight: 800,
     lineHeight: "71.34px",
     letterSpacing: "0.015rem",
-    border: "1px solid red",
+  },
+
+  headerBold: {
+    fontSize: "24px",
+    fontWeight: 700,
+    lineHeight: "28.8px",
+    letterSpacing: "0.015rem",
   },
 
   xsHeaderMedium: {

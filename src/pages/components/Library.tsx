@@ -10,7 +10,7 @@ import TigerMusic from "../../assets/tiger-music.json";
 import TigerError from "../../assets/tiger-error.json";
 import LibraryCardShimmer from "./LibraryCardShimmer";
 import { useSearch } from "../../providers/SearchProvider";
-import { LibraryCard } from "./LibraryCard";
+import { LibraryCard } from "./LIbraryCard";
 
 const LIMIT = 15; // Number of items per page
 
@@ -157,7 +157,16 @@ const Library = () => {
 
   // Main content display
   return (
-    <Box padding="62px">
+    <Box px="62px" pb={"62px"} pt={{ base: "40px", md: "60px" }}>
+      <Text
+        as={"h1"}
+        color={"white"}
+        mb={10}
+        textStyle={"headerBold"}
+        textAlign={{ base: "center", md: "left" }}
+      >
+        Tigerhall Library
+      </Text>
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 4, xl: 5 }} spacing="8">
         {/* Uncomment this section to use mock data for testing */}
         {/* {mockData.data.contentCards?.edges?.map((item, index) => (

@@ -37,7 +37,7 @@ const GenericFullPage: React.FC<GenericFullPageProps> = ({
       />
       <Text
         fontSize={32}
-        variant="formulaHeader"
+        textStyle="formulaHeader"
         color="teal.300"
         mb={4}
         textAlign={"center"}
